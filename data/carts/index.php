@@ -11,7 +11,7 @@
     header('Content-Type: ' . ($callback ? 'application/javascript' : 'application/json') . ';charset=UTF-8');
 
     $conn = new mysqli($server, $username, $password, $db);
-    mysql_select_db($database, $conn) or die ("Couldn't open $test: " . mysql_error());
+    mysqli_select_db($database, $conn) or die ("Couldn't open $test: " . mysql_error());
 
     $rows = array();
 
