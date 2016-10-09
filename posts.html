@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="lt-ie10 ie8" lang="en data-scribe-reduced-action-queue="true""><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9" lang="en data-scribe-reduced-action-queue="true""><![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/jquery.modal.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="./css/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="./css/tipr.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./js/handlebars-v3.0.3.js"></script>
+    <script src="./js/jquery.timeago.js" type="text/javascript"></script>
+    <script>
+    $(function() {
+
+        $.getJSON("./data/posts.php?limit=10", function(obj) {
+
+        var source = $("#post-listing").html();
+        var template = Handlebars.compile(source);
+
+        $('#posts').append(template(obj));
+
+        $("a.timeago").timeago();
+
+        })
+
+        
+    });
+    </script>
+    
+</head>
+
+<body>
+    <script id="post-listing" type="text/x-handlebars-template">
+        {{#posts}}
+        <li class="js-stream-item stream-item stream-item expanding-stream-item">
+            <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable js-original-tweet has-cards with-non-tweet-action-follow-button">
+                <div class="context">
+                </div>
+                <div class="content">
+                    <div class="stream-item-header">
+                        <a id="profile" class="tip account-group js-account-group js-action-profile js-user-profile-link js-nav" href="" data-tip="<div class='profile-card'>
+                                                    <div class='profile-card-img'><img src='https://pbs.twimg.com/profile_images/506144768041033728/7D3zvDtj_bigger.jpeg'></div>
+                                                    <div class='profile-card-name'>John Steinmetz</div>
+                                                    <div class='profile-card-handle'>@jsteinmetz</div>
+                                                    <div class='profile-card-title'>Director, Information Technology</div>
+                                                </div>">
+                            <img class="avatar js-action-profile-avatar" src="{{profileimg}}" alt="{{firstname}} {{lastname}}">
+                            <strong class="fullname js-action-profile-name">{{firstname}} {{lastname}}</strong>
+                            <span>&rlm;</span><span class="username js-action-profile-name"><s>@</s><b>{{handle}}</b></span>
+                        </a>
+                        <small class="time">
+                        	<a href="#" class="timeago tweet-timestamp js-permalink js-nav js-tooltip" title="{{postdate}}" ><span class=" _timestamp js-short-timestamp js-relative-timestamp" aria-hidden="true">{{postdate}}</span></a></small>
+                    </div>
+                    <p class="TweetTextSize js-tweet-text tweet-text" lang="en">Added this document to show technical capabilities in healthcare.
+                        <div class="filebox">File: <a href="" rel="nofollow" dir="ltr" class="twitter-timeline-link" target="_blank" title=""><span class="tco-ellipsis"></span><span class="invisible">http://</span><span class="js-display-url">w2ogroup.box.com/wH6jg5Ns</span><span class="tco-ellipsis"><span class="invisible">&nbsp;</span>…</span></a></div>
+                    </p>
+                    <div class="expanded-content js-tweet-details-dropdown">
+                    </div>
+                    <div class="stream-item-footer">
+                        <span class="ProfileTweet-action--reply u-hiddenVisually"></span>
+                        <span class="ProfileTweet-action--retweet u-hiddenVisually"><span class="ProfileTweet-actionCount" aria-hidden="true"><span class="ProfileTweet-actionCountForAria" >3 retweets</span>
+                        </span>
+                        </span>
+                        <span class="ProfileTweet-action--favorite u-hiddenVisually"><span class="ProfileTweet-actionCount" aria-hidden="true"><span class="ProfileTweet-actionCountForAria" >3 favorites</span>
+                        </span>
+                        </span>
+                        <div role="group" aria-label="Tweet actions" class="ProfileTweet-actionList u-cf js-actions">
+                            <div class="ProfileTweet-action ProfileTweet-action--reply">
+                                <button class="ProfileTweet-actionButton u-textUserColorHover js-actionButton js-actionReply js-tooltip" type="button" title="Reply">
+                                    <span class="Icon Icon--reply"></span>
+                                    <span class="u-hiddenVisually">Reply</span>
+                                </button>
+                            </div>
+                            <div class="ProfileTweet-action ProfileTweet-action--retweet js-toggleState js-toggleRt">
+                                <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet js-tooltip" title="Retweet" type="button">
+                                    <span class="Icon Icon--retweet"></span>
+                                    <span class="u-hiddenVisually">Retweet</span>
+                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero"><span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
+                                    </span>
+                                </button>
+                                <button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet js-tooltip" title="Undo retweet" type="button">
+                                    <span class="Icon Icon--retweet"></span>
+                                    <span class="u-hiddenVisually">Retweeted</span>
+                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero"><span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="ProfileTweet-action ProfileTweet-action--favorite js-toggleState">
+                                <button class="ProfileTweet-actionButton js-actionButton js-actionFavorite js-tooltip" title="Favorite" type="button">
+                                    <span class="Icon Icon--favorite"></span>
+                                    <span class="u-hiddenVisually">Favorite</span>
+                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero"><span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
+                                    </span>
+                                </button>
+                                <button class="ProfileTweet-actionButtonUndo u-linkClean js-actionButton js-actionFavorite js-tooltip" title="Undo favorite" type="button">
+                                    <span class="Icon Icon--favorite"></span>
+                                    <span class="u-hiddenVisually">Favorited</span>
+                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero"><span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/posts}}
+    </script>
+
+    <ul id="posts"></ul>
+</body>
+
+</html>
